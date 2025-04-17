@@ -90,7 +90,7 @@ export const ActivityList = ({ actividades, onUpdate, onDelete }) => {
                   textarea: { color: "white" },
                   label: { color: "#ccc" },
                   "& .MuiFilledInput-root": {
-                    backgroundColor: "#2a2a2a",
+                    backgroundColor: "#8a0c0c",
                     borderRadius: 1,
                   },
                 }}
@@ -107,7 +107,7 @@ export const ActivityList = ({ actividades, onUpdate, onDelete }) => {
                   input: { color: "white" },
                   label: { color: "#ccc" },
                   "& .MuiFilledInput-root": {
-                    backgroundColor: "#2a2a2a",
+                    backgroundColor: "#8a0c0c",
                     borderRadius: 1,
                   },
                 }}
