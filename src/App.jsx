@@ -51,10 +51,7 @@ function App() {
       u.id === userId
         ? {
             ...u,
-            actividades: [
-              ...u.actividades,
-              { ...actividad, archivada: false },
-            ],
+            actividades: [...u.actividades, { ...actividad, archivada: false }],
           }
         : u
     );
@@ -135,7 +132,9 @@ function App() {
       return {
         ...user,
         historialSemanas: [
-          ...(user.historialSemanas || []).filter(s => s.semana !== `${inicio} al ${fin}`),
+          ...(user.historialSemanas || []).filter(
+            (s) => s.semana !== `${inicio} al ${fin}`
+          ),
           {
             semana: `${inicio} al ${fin}`,
             dias,
@@ -175,10 +174,14 @@ function App() {
               onSelectUser={(u) => setSelectedUser(u)}
               onUpdateUser={updateUser}
               onDeleteUser={(id) => {
-              if (window.confirm('¿Estás seguro que deseas eliminar este usuario?')) {
-                deleteUser(id);
-              }
-            }}
+                if (
+                  window.confirm(
+                    "¿Estás seguro que deseas eliminar este usuario?"
+                  )
+                ) {
+                  deleteUser(id);
+                }
+              }}
             />
           </Box>
 
@@ -214,13 +217,15 @@ function App() {
                   }}
                 >
                   <ActivityList
-                    actividades={selectedUser.actividades.filter((a) => !a.archivada)}
+                    actividades={selectedUser.actividades.filter(
+                      (a) => !a.archivada
+                    )}
                     onUpdate={updateActivity}
                     onDelete={(id) => {
-                    if (window.confirm('¿Deseas eliminar esta actividad?')) {
-                      deleteActivity(id);
-                    }
-                  }}
+                      if (window.confirm("¿Deseas eliminar esta actividad?")) {
+                        deleteActivity(id);
+                      }
+                    }}
                   />
                 </Box>
                 <Button
@@ -228,7 +233,11 @@ function App() {
                   color="secondary"
                   sx={{ mt: 2 }}
                   onClick={() => {
-                    if (window.confirm('¿Estás seguro que deseas cerrar la semana laboral?')) {
+                    if (
+                      window.confirm(
+                        "¿Estás seguro que deseas cerrar la semana laboral?"
+                      )
+                    ) {
                       handleCerrarSemana();
                     }
                   }}
@@ -253,37 +262,42 @@ function App() {
                       gap: 2,
                     }}
                   >
-                    {(selectedUser.historialSemanas || []).map((semana, index) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          bgcolor: "#2a2a2a",
-                          borderRadius: 2,
-                          padding: 2,
-                          color: "white",
-                          width: "30%",
-                        }}
-                      >
-                        <Typography variant="subtitle1">
-                          <Typography variant="subtitle1" align="center">
-  Semana
-</Typography>
-<Typography variant="body2" align="center">
-  {semana.semana}
-</Typography>
-                        </Typography>
-                        <Typography variant="body2" color="lightgreen">
-                          Rendimiento: {semana.totalReal}%
-                        </Typography>
-                        <Box component="ul" sx={{ pl: 0, listStyle: "none", mt: 1 }}>
-                          {semana.dias.map((dia, i) => (
-                            <Box component="li" key={i}>
-                              {dia.fecha} — {dia.porcentaje}% trabajado
-                            </Box>
-                          ))}
+                    {(selectedUser.historialSemanas || []).map(
+                      (semana, index) => (
+                        <Box
+                          key={index}
+                          sx={{
+                            bgcolor: "#2a2a2a",
+                            borderRadius: 2,
+                            padding: 2,
+                            color: "white",
+                            width: "30%",
+                          }}
+                        >
+                          <Typography variant="subtitle1">
+                            <Typography variant="subtitle1" align="center">
+                              Semana
+                            </Typography>
+                            <Typography variant="body2" align="center">
+                              {semana.semana}
+                            </Typography>
+                          </Typography>
+                          <Typography variant="body2" color="lightgreen">
+                            Rendimiento: {semana.totalReal}%
+                          </Typography>
+                          <Box
+                            component="ul"
+                            sx={{ pl: 0, listStyle: "none", mt: 1 }}
+                          >
+                            {semana.dias.map((dia, i) => (
+                              <Box component="li" key={i}>
+                                {dia.fecha} — {dia.porcentaje}% trabajado
+                              </Box>
+                            ))}
+                          </Box>
                         </Box>
-                      </Box>
-                    ))}
+                      )
+                    )}
                   </Box>
                 )}
               </>
